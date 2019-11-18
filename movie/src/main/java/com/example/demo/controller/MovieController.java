@@ -87,6 +87,18 @@ public class MovieController {
                 .requestInterceptor(new BasicAuthRequestInterceptor("admin","password2")).target(UserFeignClient.class,"http://127.0.0.1:8000/");
     }
 
+    /**   
+     * @Description: 
+     * @param id
+     * @return com.example.demo.model.User
+     * @version: v1.0.0
+     * @author: chenxu <br/><b>e-mail:</b><br/>pscxtc@163.com
+     * @date: 2019/11/19 0019 上午 12:02 
+     * Modification History:
+     * Date           Author          Version            Description
+     *---------------------------------------------------------*
+     * 2019/11/19 0019      chenxu           v1.0.0             初始创建
+     */
     @RequestMapping("/user/{id}")
     public User findByIdUser(@PathVariable("id") Long id){
         return this.userFeignClient.getById(id);
