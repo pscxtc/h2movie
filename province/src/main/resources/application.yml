@@ -1,0 +1,32 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.72.111s:3306/h2movie?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: pscxtc98v*
+
+  application:
+    name: provider-province
+server:
+  port: 8240
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:password123@127.0.0.1:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+mybatis:
+  config-location: classpath:config/mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
+
+logging:
+  level:
+    com.example.demo.mapper: debug
+
+
+tx-lcn:
+  client:
+    manager-address: 127.0.0.1:8070

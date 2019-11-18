@@ -1,0 +1,40 @@
+
+spring:
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: h2
+    schema: classpath:static/schema.sql
+    data: classpath:static/data.sql
+  application:
+    name: provider-user
+  profiles:
+    active: user1
+
+logging:
+  level:
+    root: info
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/
+  instance:
+    prefer-ip-address: true
+
+---
+spring:
+  profiles: user1
+server:
+  port: 8000
+---
+spring:
+  profiles: user2
+server:
+  port: 8001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:password123@127.0.0.1:8761/eureka/

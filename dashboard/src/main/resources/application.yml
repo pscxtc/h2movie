@@ -1,0 +1,13 @@
+server:
+  port: 8030
+
+#²»ÓÃ8×¢²áµ½ eureka
+spring:
+  application:
+    name: dashboard
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:password123@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true

@@ -1,0 +1,25 @@
+server:
+  port: 8010
+logging:
+  level:
+    root: info
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/
+  instance:
+    prefer-ip-address: true
+spring:
+  application:
+    name: provider-movie
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+ribbon:
+  eureka:
+    enabled: true
+
