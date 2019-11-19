@@ -28,7 +28,12 @@ zuul:
     eager-load:
         enabled: true
   retryable: true #开启重连机制
+  semaphore:
+    max-semaphores: 2000
+  ribbon-isolation-strategy: semaphore
 ribbon:
-	ReadTimeout: 120000  #请求处理的超时时间
-	ConnectTimeout: 30000  #请求连接的超时时间
+  eureka:
+    enabled: true
+  ReadTimeout: 80000  #请求处理的超时时间
+  ConnectTimeout: 50000  #请求连接的超时时间
 
