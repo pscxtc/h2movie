@@ -9,18 +9,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 /**
  * 自定义 健康检查
  *
+ * 放弃,在状态 up后,依然还有 一段不可响应期
+ *
  * @author chenxu
  * @since 2019年11月19日
  */
 @Slf4j
-@Component
+//@Component
 @Data
 public class MyHealthChecker implements HealthIndicator {
 

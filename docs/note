@@ -6,3 +6,6 @@ There was an unexpected error (type=Gateway Timeout, status=504).
 com.netflix.zuul.exception.ZuulException: Hystrix Readed time out
 
 https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-ribbon.html#ribbon-child-context-eager-load
+
+解决504
+https://blog.csdn.net/didi7696/article/details/83092525

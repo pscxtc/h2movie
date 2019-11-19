@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: gateway-zuul
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true #开启重连机制
 eureka:
   client:
     service-url:
@@ -23,6 +27,8 @@ zuul:
   ribbon:
     eager-load:
         enabled: true
+  retryable: true #开启重连机制
 ribbon:
 	ReadTimeout: 120000  #请求处理的超时时间
 	ConnectTimeout: 30000  #请求连接的超时时间
+
