@@ -23,3 +23,6 @@ zuul:
   ribbon:
     eager-load:
         enabled: true
+ribbon:
+	ReadTimeout: 120000  #请求处理的超时时间
+	ConnectTimeout: 30000  #请求连接的超时时间
