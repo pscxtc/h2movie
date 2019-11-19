@@ -38,7 +38,7 @@ public class UserController {
     public User getById(@PathVariable("id") Long id){
         User user = userRepository.findById(id).get();
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        user.setIp(IpUtil.getIpAddr(request)+"---1");
+        user.setIp(IpUtil.getIpAddr(request)+"---"+System.currentTimeMillis());
         return user;
     }
 
