@@ -1,5 +1,6 @@
 package com.example.demo.health;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpStatus;
@@ -29,25 +30,42 @@ public class MyHealthChecker implements HealthIndicator {
     /** 是否需要端口检查标识*/
     private boolean changeFlag = true;
 
+    /** 启动时间 */
+    private Long initTime = null;
+
+    /** 需求倒计时的时间 单位 ms */
+    private Long startTime = 60*1000L;
+
     @Value("${server.port}")
     private String port ;
+
     @Override
     public Health health() {
-        log.warn("{}------健康检查被调用!当前状态:{}",new Date(),this.state);
+        log.info("{}------健康检查被调用!当前状态:{}",new Date(),this.state);
 
-        //是否需要 主动改变 状态
-        log.warn("是否需要主动变更:{}",changeFlag);
-        if (changeFlag){
-            log.warn("http://localhost:{}/healthCheck",port);
+        //是否开启倒计时
+        if (ObjectUtil.isNull(initTime)){
+            //未初始化倒计时,验证端口状态
+            log.info("http://localhost:{}/healthCheck",port);
             HttpResponse res = HttpRequest.post("http://localhost:"+port+"/healthCheck").execute();
-
-            log.warn("返回状态:{}",res.getStatus());
+            log.info("返回状态:{}",res.getStatus());
             if (HttpStatus.HTTP_OK == res.getStatus()){
-                state = true;
-                changeFlag = false;
-                log.warn("健康检查通过!");
+                //开启倒计时
+                initTime = System.currentTimeMillis();
+                log.info("开启倒计时:{}", initTime);
+            }
+        }else {
+            if (System.currentTimeMillis() - initTime > startTime ){
+                if(!state){
+                    //到达开启时间,服务开启
+                    state = true;
+                    log.info("开启服务:{}", System.currentTimeMillis());
+                }
+            }else {
+                log.info("等待服务开启,剩余时间:{}ms",startTime -( System.currentTimeMillis()-initTime));
             }
         }
+
         if (state) {
             //自定义监控内容
             return new Health.Builder().withDetail("aaa_cnt", 10)
