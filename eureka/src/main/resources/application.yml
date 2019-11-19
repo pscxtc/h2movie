@@ -14,9 +14,6 @@ eureka:
       defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/
     register-with-eureka: true
     fetch-registry: true
-ribbon:
-  eager-load:
-    enabled: true
 ---
 spring:
   profiles: peer1
