@@ -9,10 +9,6 @@ eureka:
       defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/
     healthcheck:
       enabled: true
-ribbon:
-  eager-load:
-    enabled: true
-    clients: provider-user
 spring:
   application:
     name: provider-movie
@@ -24,6 +20,7 @@ feign:
         connectTimeout: 10000
         readTimeout: 10000
 ribbon:
-  eureka:
+  eager-load:
     enabled: true
+    clients: provider-user
 
