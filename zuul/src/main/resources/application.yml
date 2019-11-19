@@ -8,12 +8,13 @@ eureka:
   client:
     service-url:
       defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/
+    healthcheck:
+      enabled: true
 zuul:
   ignored-services: '*'
   routes:
     provider-movie: /m/**
     provider-user: /u/**
-    peer1: /e/**
   prefix: /v1
   force-original-query-string-encoding: true
   host:

@@ -1,0 +1,8 @@
+sh -c "while true; do curl http://192.168.72.100:8010/movie/user/1&&sleep 1; echo '' ; done"
+sh -c "while true; do curl http://192.168.72.100:8000/user/getById/1&&sleep 1; echo '' ; done"
+sh -c "while true; do curl http://192.168.72.100/v1/m/movie/user/1&&sleep 1; echo '' ; done"
+
+There was an unexpected error (type=Gateway Timeout, status=504).
+com.netflix.zuul.exception.ZuulException: Hystrix Readed time out
+
+https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-ribbon.html#ribbon-child-context-eager-load
