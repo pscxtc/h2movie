@@ -32,7 +32,7 @@ services:
         delay: 10s
   movie:
     image: 192.168.8.110:5000/com.example/movie:0.0.1
-    prots:
+    ports:
       - "8010:8010"
 #    depends_on:
 #      - user
