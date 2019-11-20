@@ -48,7 +48,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <repository>${docker.registry}/${project.groupId}/${project.artifactId}</repository>
+                    <repository>${project.groupId}-${project.artifactId}</repository>
                     <tag>${h2movie.version}</tag>
                     <dockerfile>${docker.dockerFile}</dockerfile>
                     <buildArgs>

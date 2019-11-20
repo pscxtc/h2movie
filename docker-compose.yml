@@ -1,7 +1,7 @@
 version: '3'
 services:
   peer1:
-    image: 192.168.8.110:5000/com.example/eureka:0.0.1
+    image: com.example-eureka:0.0.1
     ports:
       - "8761:8761"
     environment:
@@ -9,7 +9,7 @@ services:
 #    networks:
 #      - "net1"
   peer2:
-    image: 192.168.8.110:5000/com.example/eureka:0.0.1
+    image: com.example-eureka:0.0.1
     ports:
       - "8762:8762"
     environment:
@@ -17,7 +17,7 @@ services:
 #    networks:
 #      - "net1"
   user:
-    image: 192.168.8.110:5000/com.example/user:0.0.1
+    image: com.example-user:0.0.1
     ports:
       - "8000:8000"
     depends_on:
@@ -31,7 +31,7 @@ services:
         parallelism: 1
         delay: 10s
   movie:
-    image: 192.168.8.110:5000/com.example/movie:0.0.1
+    image: com.example-movie:0.0.1
     ports:
       - "8010:8010"
     depends_on:
@@ -39,7 +39,7 @@ services:
 #    networks:
 #      - "net1"
   zuul:
-    image: 192.168.8.110:5000/com.example/zuul:0.0.1
+    image: com.example-zuul:0.0.1
     ports:
       - "80:8040"
     depends_on:

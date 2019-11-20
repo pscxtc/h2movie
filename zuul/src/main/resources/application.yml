@@ -4,10 +4,10 @@ server:
 spring:
   application:
     name: gateway-zuul
-#  cloud:
-#    loadbalancer:
-#      retry:
-#        enabled: true #开启重连机制
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true #开启重连机制
 eureka:
   client:
     service-url:
@@ -21,13 +21,16 @@ zuul:
     provider-user: /u/**
   prefix: /v1
   force-original-query-string-encoding: true
+  host:
+    connect-timeout-millis: 15000
+    socket-timeout-millis: 60000
   ribbon:
     eager-load:
         enabled: true
-#  retryable: true #开启重连机制
-#  semaphore:
-#    max-semaphores: 2000
-#  ribbon-isolation-strategy: semaphore
+  retryable: true #开启重连机制
+  semaphore:
+    max-semaphores: 2000
+  ribbon-isolation-strategy: semaphore
 ribbon:
   eureka:
     enabled: true
