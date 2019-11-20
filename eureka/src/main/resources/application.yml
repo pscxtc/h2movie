@@ -36,3 +36,7 @@ server:
 eureka:
   instance:
     hostname: peer2
+  client:
+    service-url:
+      defaultZone: http://user:password123@127.0.0.1:8762/eureka/
+

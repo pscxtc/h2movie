@@ -24,3 +24,19 @@ ribbon:
     enabled: true
     clients: provider-user
 
+ribbon:
+  ConnectTimeout: 1000  #请求连接的超时时间
+  ReadTimeout: 1000  #请求处理的超时时间
+  OktoRetryOnAllOperations: true
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 1
+
+---
+spring:
+  profiles: movie2
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:password123@127.0.0.1:8762/eureka/
+
+
