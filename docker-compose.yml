@@ -18,8 +18,8 @@ services:
 #      - "net1"
   user:
     image: 192.168.8.110:5000/com.example/user:0.0.1
-    expose:
-      - "8000"
+    ports:
+      - "8000:8000"
     depends_on:
       - peer1
       - peer2
