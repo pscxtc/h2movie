@@ -34,16 +34,16 @@ services:
     image: 192.168.8.110:5000/com.example/movie:0.0.1
     ports:
       - "8010:8010"
-#    depends_on:
-#      - user
+    depends_on:
+      - user
 #    networks:
 #      - "net1"
   zuul:
     image: 192.168.8.110:5000/com.example/zuul:0.0.1
     ports:
       - "80:8040"
-#    depends_on:
-#      - movie
+    depends_on:
+      - movie
 #networks:
 #  net1:
 #    driver: overlay

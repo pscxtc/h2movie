@@ -13,6 +13,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @Description:
@@ -40,6 +41,11 @@ public class UserController {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         user.setIp(IpUtil.getIpAddr(request)+"---"+System.currentTimeMillis());
         return user;
+    }
+
+    @RequestMapping("/getAll/")
+    List<User> getAll(){
+        return userRepository.findAll();
     }
 
 }

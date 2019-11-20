@@ -1,11 +1,14 @@
 package com.example.demo.feign;
 
+import com.example.demo.feign.fallBack.UserFeignClientFallBack;
 import com.example.demo.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 /**
  * @Description:
@@ -19,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 2019/9/3 0003      chenxu                     v1.0.0               初始创建
  */
 //@FeignClient(value = "provider-user",fallback = FeignClientFallback.class)
-@FeignClient(value = "provider-user")
+@FeignClient(value = "provider-user",fallbackFactory = UserFeignClientFallBack.class)
 @Component
 public interface UserFeignClient {
 
@@ -37,4 +40,17 @@ public interface UserFeignClient {
      */
     @RequestMapping(value = "/user/getById/{id}", method = RequestMethod.GET)
     User getById(@PathVariable("id") Long id);
+
+    /**
+     * 查询全部
+     * @param
+     * @return {@link List<User>}
+     * @since 2019/11/20
+     * 版本历史:
+     * Date         Author         Description
+     *---------------------------------------------------------*
+     * 2019/11/20    chenxu          初始创建
+     */
+    @RequestMapping(value = "/user/getAll", method = RequestMethod.GET)
+    List<User> getAll();
 }
