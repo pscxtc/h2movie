@@ -12,5 +12,5 @@ git pull  #正常更新
 echo "git 更新代码完成。。。。。";
 mvn clean package;
 docker image prune;
-echo y;
+echo "y" |updateCode.sh
 docker images;
