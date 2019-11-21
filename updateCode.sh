@@ -11,6 +11,5 @@ git pull  #正常更新
 #git reset --hard origin/master ; #覆盖更新
 echo "git 更新代码完成。。。。。";
 mvn clean package;
-docker image prune;
-echo "y" |updateCode.sh
+docker image prune -f;
 docker images;
