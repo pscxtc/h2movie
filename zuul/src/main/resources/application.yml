@@ -8,6 +8,9 @@ spring:
     loadbalancer:
       retry:
         enabled: true #开启重连机制
+  mvc:
+    servlet:
+      load-on-startup: 1
 eureka:
   client:
     service-url:

@@ -13,6 +13,9 @@ spring:
     name: provider-user
   profiles:
     active: user1
+  mvc:
+    servlet:
+      load-on-startup: 1
 
 logging:
   level:

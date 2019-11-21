@@ -29,7 +29,7 @@ services:
       replicas: 2
       update_config:
         parallelism: 1
-        delay: 10s
+        delay: 60s
   movie:
     image: com.example-movie:0.0.1
     expose:
