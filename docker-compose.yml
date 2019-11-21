@@ -18,7 +18,7 @@ services:
       - "net1"
   user:
     image: com.example-user:0.0.1
-    export:
+    expose:
       - "8000"
     depends_on:
       - peer1
@@ -32,7 +32,7 @@ services:
         delay: 10s
   movie:
     image: com.example-movie:0.0.1
-    ports:
+    expose:
       - "8010:8010"
     depends_on:
       - user
