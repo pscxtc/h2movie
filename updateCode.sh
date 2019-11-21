@@ -6,11 +6,8 @@ if [ ! -n "$1" ] ;then
 fi
 cd $codePath$projectName
 echo "git 更新代码开始。。。。。" ;
-git pull origin master #正常更新
+git pull  #正常更新
 #git fetch --all ;
 #git reset --hard origin/master ; #覆盖更新
 echo "git 更新代码完成。。。。。";
-mvn clean package;
-docker image prune;
-echo y;
-docker images;
+pwd;
