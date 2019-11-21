@@ -14,21 +14,100 @@ spring:
   application:
     name: provider-movie
 
-ribbon:
-  # 默认相同的route不重试,可以避免一些各种重试引起的问题，简单化(但服务提供方还是应该尽量保证幂等性)
-  MaxAutoRetries: 0
-  # 默认只重试不同route一次
-  MaxAutoRetriesNextServer: 1
-  # 由于在前面feign文档中已经讲到使用自己配置的HttpClient连接池,所以不需要配置ribbon连接池相关的任何属性(因为考虑到每个服务提供方的不同，后期可能会更改回来使用ribbon连接池方式)
-  # 默认5000
-  ReadTimeout: 5000
-  # 默认2000
-  ConnectTimeout: 2000
-  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule #配置规则 最空闲连接策
-  eager-load:
+
+
+#-----------------hystrix,需要搭配 fallback
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+#若配置了重试则超时时间= (1 + MaxAutoRetries + MaxAutoRetriesNextServer) * ReadTimeout
+            timeoutInMilliseconds: 60000
+  threadpool:
+  #全局配置
+    default:
+      coreSize: 10
+      maxQueueSize: 50
+      queueSizeRejectionThreshold: 30
+      keepAliveTimeMinutes: 3
+#  #对某个服务配置，写service-id
+#    base-rpc:
+#      coreSize: 10
+#      maxQueueSize: 30
+#      queueSizeRejectionThreshold: 20
+#      keepAliveTimeMinutes: 3
+#  #对某个接口配置
+#    BaseApiClient#searchItemSkuList(PosSkuSearch):
+#      coreSize: 10
+#      maxQueueSize: 40
+#      queueSizeRejectionThreshold: 30
+#      keepAliveTimeMinutes: 1
+
+#----------------feign超时-----------------
+feign:
+  hystrix:
+#不配置或为false则不生效
     enabled: true
-    clients:
-      - provider-user
+  client:
+    config:
+      #全局
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+#       某个服务
+#      rpc-pos:
+#        connectTimeout: 5000
+#        readTimeout: 8000
+#httpclient超时 配置
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+#连接池最大连接数，默认200
+    max-connections: 500
+#每一个IP最大占用多少连接 默认 50
+    max-connections-per-route: 50
+#默认连接超时时间：2000毫秒
+    connection-timeout: 8000
+#连接池管理定时器执行频率：默认 3000毫秒
+    connection-timer-repeat: 6000
+#连接池中存活时间，默认为5
+    time-to-live: 5
+    time-to-live-unit: minutes
+
+
+#--------------ribbon超时-------------
+#全局配置
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 10000
+  #false to only allow get method to retry
+  OkToRetryOnAllOperations: true
+  # Max number of next servers to retry (excluding the first server)
+  MaxAutoRetriesNextServer: 0
+  # Max number of retries on the same server (excluding the first try)
+  MaxAutoRetries: 0
+  # Interval to refresh the server list from the source
+  ServerListRefreshInterval: 5000
+  retryableStatusCodes: 404,500
+
+#服务配置
+#base-rpc:
+#  ribbon:
+#    ReadTimeout: 60000
+#    ConnectTimeout: 10000
+#    #false to only allow get method to retry
+#    OkToRetryOnAllOperations: true
+#    # Max number of next servers to retry (excluding the first server)
+#    MaxAutoRetriesNextServer: 2
+#    # Max number of retries on the same server (excluding the first try)
+#    MaxAutoRetries: 0
+#    # Interval to refresh the server list from the source
+#    ServerListRefreshInterval: 5000
+#    retryableStatusCodes: 404,500
+
 ---
 spring:
   profiles: movie2
