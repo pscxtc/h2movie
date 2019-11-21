@@ -14,7 +14,22 @@ spring:
   application:
     name: provider-movie
 
----
+ribbon:
+  # 默认相同的route不重试,可以避免一些各种重试引起的问题，简单化(但服务提供方还是应该尽量保证幂等性)
+  MaxAutoRetries: 0
+  # 默认只重试不同route一次
+  MaxAutoRetriesNextServer: 1
+  # 由于在前面feign文档中已经讲到使用自己配置的HttpClient连接池,所以不需要配置ribbon连接池相关的任何属性(因为考虑到每个服务提供方的不同，后期可能会更改回来使用ribbon连接池方式)
+  # 默认5000
+  ReadTimeout: 5000
+  # 默认2000
+  ConnectTimeout: 2000
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule #配置规则 最空闲连接策
+  eager-load:
+    enabled: true
+    clients:
+      - provider-user
+  ---
 spring:
   profiles: movie2
 eureka:
