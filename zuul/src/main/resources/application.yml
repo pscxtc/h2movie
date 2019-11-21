@@ -30,4 +30,6 @@ zuul:
 ribbon:
   eureka:
     enabled: true
+  ReadTimeout: 80000  #请求处理的超时时间
+  ConnectTimeout: 70000  #请求连接的超时时间
 
