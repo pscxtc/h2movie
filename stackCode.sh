@@ -16,3 +16,4 @@ case $action in
     update) echo -e "强制更新";docker service update --force --detach=false $project;;
     *) echo -e "参数异常!可选[deploy/rm/logs/update]";;
 esac
+echo "操作完毕";
