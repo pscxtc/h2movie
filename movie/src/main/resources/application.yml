@@ -29,7 +29,7 @@ ribbon:
     enabled: true
     clients:
       - provider-user
-  ---
+---
 spring:
   profiles: movie2
 eureka:
