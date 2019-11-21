@@ -1,5 +1,6 @@
 package com.example.demo.feign;
 
+import com.example.demo.feign.fallBack.UserFeignClientFallBack;
 import com.example.demo.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -20,9 +21,8 @@ import java.util.List;
  * ---------------------------------------------------------*
  * 2019/9/3 0003      chenxu                     v1.0.0               初始创建
  */
-//@FeignClient(value = "provider-user",fallback = FeignClientFallback.class)
-//@FeignClient(value = "provider-user",fallbackFactory = UserFeignClientFallBack.class)
-@FeignClient(value = "provider-user")
+@FeignClient(value = "provider-user",fallbackFactory = UserFeignClientFallBack.class)
+//@FeignClient(value = "provider-user")
 @Component
 public interface UserFeignClient {
 
