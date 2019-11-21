@@ -6,25 +6,25 @@ services:
       - "8761:8761"
     environment:
       - spring.profiles.active=peer1
-#    networks:
-#      - "net1"
+    networks:
+      - "net1"
   peer2:
     image: com.example-eureka:0.0.1
     ports:
       - "8762:8762"
     environment:
       - spring.profiles.active=peer2
-#    networks:
-#      - "net1"
+    networks:
+      - "net1"
   user:
     image: com.example-user:0.0.1
-    ports:
-      - "8000:8000"
+    export:
+      - "8000"
     depends_on:
       - peer1
       - peer2
-##    networks:
-##      - "net1"
+    networks:
+      - "net1"
     deploy:
       replicas: 2
       update_config:
@@ -36,14 +36,16 @@ services:
       - "8010:8010"
     depends_on:
       - user
-#    networks:
-#      - "net1"
+    networks:
+      - "net1"
   zuul:
     image: com.example-zuul:0.0.1
     ports:
       - "80:8040"
     depends_on:
       - movie
-#networks:
-#  net1:
-#    driver: overlay
+    networks:
+      - "net1"
+networks:
+  net1:
+    driver: overlay
