@@ -14,6 +14,7 @@ case $action in
     rm) echo -e "删除";docker stack rm $project;docker stack services $project;;
     logs) echo -e "日志";docker service logs -f $project;;
     update) echo -e "强制更新";docker service update --force --detach=false $project;;
+    ps) echo -e "状态";docker stack services $project;;
     *) echo -e "参数异常!可选[deploy/rm/logs/update]";;
 esac
 echo "操作完毕";
