@@ -24,7 +24,7 @@ hystrix:
         isolation:
           thread:
 #若配置了重试则超时时间= (1 + MaxAutoRetries + MaxAutoRetriesNextServer) * ReadTimeout
-            timeoutInMilliseconds: 60000
+            timeoutInMilliseconds: 4000
   threadpool:
   #全局配置
     default:
@@ -81,14 +81,14 @@ feign:
 #--------------ribbon超时-------------
 #全局配置
 ribbon:
-  ReadTimeout: 60000
-  ConnectTimeout: 10000
+  ReadTimeout: 1000
+  ConnectTimeout: 500
   #false to only allow get method to retry
   OkToRetryOnAllOperations: true
   # Max number of next servers to retry (excluding the first server)
-  MaxAutoRetriesNextServer: 0
+  MaxAutoRetriesNextServer: 2
   # Max number of retries on the same server (excluding the first try)
-  MaxAutoRetries: 0
+  MaxAutoRetries: 1
   # Interval to refresh the server list from the source
   ServerListRefreshInterval: 5000
   retryableStatusCodes: 404,500
