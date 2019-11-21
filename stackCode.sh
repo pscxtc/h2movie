@@ -10,8 +10,8 @@ if [ ! -n "$2" ] ;then
   project="h2";
 fi
 case $action in
-    deploy) echo -e "部署";docker stack deploy -c docker-compose.yml $project;;
-    rm) echo -e "删除";docker stack rm $project;;
+    deploy) echo -e "部署";docker stack deploy -c docker-compose.yml $project;docker stack services $project;;
+    rm) echo -e "删除";docker stack rm $project;docker stack services $project;;
     logs) echo -e "日志";docker service logs -f $project;;
     update) echo -e "强制更新";docker service update --force --detach=false $project;;
     *) echo -e "参数异常!可选[deploy/rm/logs/update]";;
