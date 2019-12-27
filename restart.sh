@@ -13,7 +13,7 @@ if [ ! -n "$2" ] ;then
 fi
 echo "部署 $1"
 pid=`ps -ef | grep $project.jar | grep -v grep | awk '{print $2}'`
-echo “旧应用进程id：$pid”
+echo "旧应用进程id：$pid"
 if [ -n "$pid" ]
 then
 kill -9 $pid
