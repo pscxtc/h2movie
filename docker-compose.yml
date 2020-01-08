@@ -25,11 +25,11 @@ services:
       - peer2
     networks:
       - "net1"
-    deploy:
-      replicas: 2
-      update_config:
-        parallelism: 1
-        delay: 60s
+#    deploy:
+#      replicas: 2
+#      update_config:
+#        parallelism: 1
+#        delay: 60s
   movie:
     image: com.example-movie:0.0.1
     expose:
