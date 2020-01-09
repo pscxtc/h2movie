@@ -10,6 +10,10 @@ eureka:
       defaultZone: http://user:password123@peer1:8761/eureka/,http://user:password123@peer2:8762/eureka/
     # eureka client刷新本地缓存时间
     registryFetchIntervalSeconds: 5
+  instance:
+    #以IP地址注册到服务中心
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
 
 spring:
   application:
