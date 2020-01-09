@@ -44,8 +44,13 @@ public class UserController {
     }
 
     @RequestMapping("/getAll/")
-    List<User> getAll(){
+    public List<User> getAll(){
         return userRepository.findAll();
     }
 
+    @RequestMapping("/hello/{name}")
+    public String hello(@PathVariable("name") String name){
+        System.out.println(name);
+        return "Hello : "+name;
+    }
 }

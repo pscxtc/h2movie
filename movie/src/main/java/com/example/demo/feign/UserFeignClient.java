@@ -53,4 +53,17 @@ public interface UserFeignClient {
      */
     @RequestMapping(value = "/user/getAll", method = RequestMethod.GET)
     List<User> getAll();
+
+    /**
+     * 简易接口
+     * @param name
+     * @return {@link String}
+     * @since 2020/1/9
+     * 版本历史:
+     * Date         Author         Description
+     *---------------------------------------------------------*
+     * 2020/1/9   chenxu          初始创建
+     */
+    @RequestMapping(value = "/user/hello/{name}", method = RequestMethod.GET)
+    String hello(@PathVariable("name") String name);
 }

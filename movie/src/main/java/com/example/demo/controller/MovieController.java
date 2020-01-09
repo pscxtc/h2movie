@@ -117,6 +117,17 @@ public class MovieController {
         return this.adminFeignClient.getById(id);
     }
 
+    @RequestMapping("/bye/{name}")
+    public String bye(@PathVariable("name") String name){
+        System.out.println(name);
+        return "bye : "+name;
+    }
+
+
+    @RequestMapping("/hello/{name}")
+    public String hello(@PathVariable("name") String name){
+        return "movie : "+this.userFeignClient.hello(name);
+    }
 //    public User findByIdAdminFallback( Long id){
 //        User user = new User();
 //        user.setId(-1L);
