@@ -18,8 +18,8 @@ services:
       - "net1"
   user:
     image: com.example-user:0.0.1
-    ports:
-      - "8000:8000"
+#    ports:
+#      - "8000:8000"
     depends_on:
       - peer1
       - peer2
@@ -32,8 +32,8 @@ services:
 #        delay: 60s
   movie:
     image: com.example-movie:0.0.1
-    ports:
-      - "8010:8010"
+#    ports:
+#      - "8010:8010"
     depends_on:
       - user
     networks:
