@@ -38,6 +38,12 @@ public class UserFeignClientFallBack implements FallbackFactory<UserFeignClient>
             public List<User> getAll() {
                 return new ArrayList<>();
             }
+
+            @Override
+            public String hello(String name) {
+                return "testXXXXXX";
+            }
+
         };
     }
 }
