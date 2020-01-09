@@ -33,3 +33,12 @@ ribbon:
   ReadTimeout: 80000  #请求处理的超时时间
   ConnectTimeout: 70000  #请求连接的超时时间
 
+---
+spring:
+  profiles: zuul1
+server:
+  port: 80
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:password123@127.0.0.1:8762/eureka/

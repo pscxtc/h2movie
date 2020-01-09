@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.utils.IpUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import java.util.List;
  * ---------------------------------------------------------*
  * 2019/9/3 0003      chenxu                     v1.0.0               初始创建
  */
+@Slf4j
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
@@ -50,7 +52,7 @@ public class UserController {
 
     @RequestMapping("/hello/{name}")
     public String hello(@PathVariable("name") String name){
-        System.out.println(name);
+        log.info(name);
         return "Hello : "+name;
     }
 }
