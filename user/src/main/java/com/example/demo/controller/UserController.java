@@ -14,6 +14,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 /**
@@ -38,10 +40,10 @@ public class UserController {
     private UserRepository userRepository;
 
     @RequestMapping("/getById/{id}")
-    public User getById(@PathVariable("id") Long id){
+    public User getById(@PathVariable("id") Long id) throws UnknownHostException {
         User user = userRepository.findById(id).get();
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        user.setIp(IpUtil.getIpAddr(request)+"---"+System.currentTimeMillis());
+        user.setIp("request_ip:"+IpUtil.getIpAddr(request)+";local_ip:"+ InetAddress.getLocalHost().getHostAddress()+";time:"+System.currentTimeMillis());
         return user;
     }
 
