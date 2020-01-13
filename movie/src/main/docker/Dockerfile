@@ -5,5 +5,5 @@ ADD ${ARG_HEALTH_CHECK} /opt/
 ARG JAR_FILE
 ADD ${JAR_FILE} /root/app.jar
 RUN bash -c 'touch /root/app.jar'
-HEALTHCHECK CMD /bin/bash /opt/healthCheck.sh
+#HEALTHCHECK CMD /bin/bash /opt/healthCheck.sh
 ENTRYPOINT [ "sh", "-c", "exec java -jar /root/app.jar"]

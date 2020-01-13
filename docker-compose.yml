@@ -2,7 +2,7 @@ version: '2'
 services:
   peer1:
     image: com.example-eureka:0.0.1
-    mem_limit: 100m
+    mem_limit: 256m
     ports:
       - "8761:8761"
     environment:
@@ -11,7 +11,7 @@ services:
 #      - "net1"
   peer2:
     image: com.example-eureka:0.0.1
-    mem_limit: 100m
+    mem_limit: 256m
     ports:
       - "8762:8762"
     environment:
@@ -20,7 +20,7 @@ services:
 #      - "net1"
   user:
     image: com.example-user:0.0.1
-    mem_limit: 100m
+    mem_limit: 256m
 #    ports:
 #      - "8020:8000"
     depends_on:
@@ -35,16 +35,16 @@ services:
 #        delay: 60s
   movie:
     image: com.example-movie:0.0.1
-    mem_limit: 100m
+    mem_limit: 256m
 #    ports:
 #      - "8010:8010"
-#    depends_on:
+    depends_on:
       - user
 #    networks:
 #      - "net1"
   zuul:
     image: com.example-zuul:0.0.1
-    mem_limit: 100m
+    mem_limit: 256m
     ports:
       - "80:8040"
     depends_on:
