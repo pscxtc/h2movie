@@ -2,11 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.IUserService;
 import com.example.demo.utils.IpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +41,14 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    @Qualifier("userService")
+    private IUserService userService;
+
+    @Autowired
+    @Qualifier("customerService")
+    private IUserService customerService;
+
     @RequestMapping("/getById/{id}")
     public User getById(@PathVariable("id") Long id) throws UnknownHostException {
         User user = userRepository.findById(id).get();
@@ -56,5 +66,15 @@ public class UserController {
     public String hello(@PathVariable("name") String name){
         log.info(name);
         return "Hello : "+name;
+    }
+
+    @RequestMapping("/testQ1")
+    public String testQ1(){
+        return  userService.test();
+    }
+
+    @RequestMapping("/testQ2")
+    public String testQ2(){
+        return  customerService.test();
     }
 }

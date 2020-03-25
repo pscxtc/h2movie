@@ -48,7 +48,7 @@ public class CityServiceImpl implements CityService {
 
         int result = cityMapper.insert(c);
 
-//        int i = 1/0;
+        int i = 1/0;
 
         if (result > 0)
             return " save City success";
